@@ -1,0 +1,307 @@
+ResNet(
+  (conv1): QConv2d(
+    3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+    (quan_w_fn): PACTQuantizer(bit=8, pose=127, neg=-127, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+    (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+  )
+  (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(
+    (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+  )
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (1): BasicBlock(
+      (conv1): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (2): BasicBlock(
+      (conv1): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (3): BasicBlock(
+      (conv1): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (4): BasicBlock(
+      (conv1): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): QConv2d(
+        16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): LambdaLayer()
+    )
+    (1): BasicBlock(
+      (conv1): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (2): BasicBlock(
+      (conv1): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (3): BasicBlock(
+      (conv1): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (4): BasicBlock(
+      (conv1): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): QConv2d(
+        32, 64, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): LambdaLayer()
+    )
+    (1): BasicBlock(
+      (conv1): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (2): BasicBlock(
+      (conv1): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (3): BasicBlock(
+      (conv1): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+    (4): BasicBlock(
+      (conv1): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (conv2): QConv2d(
+        64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+        (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-8, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu1): ReLU()
+      (relu2): ReLU(
+        (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+      )
+      (shortcut): Sequential()
+    )
+  )
+  (linear): QLinear(
+    in_features=64, out_features=100, bias=True
+    (quan_w_fn): PACTQuantizer(bit=8, pose=127, neg=-127, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+    (quan_a_fn): LsqQuantizer(bit=8, pos=127, neg=-128, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+  )
+)
