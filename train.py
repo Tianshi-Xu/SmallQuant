@@ -33,7 +33,7 @@ import torchvision.datasets as datasets
 from torchvision import transforms
 from torch.utils.data import DataLoader
 from torch.nn.parallel import DistributedDataParallel as NativeDDP
-sys.path.append("/home/xts/code/MySparsity/pytorch-image-models")
+sys.path.append("/home/xts/code/privquant-test/timm")
 import src.resnet_3stages as resnet_3stages
 
 # sys.path.append("/data/home/menglifrl/pytorch-image-models")
