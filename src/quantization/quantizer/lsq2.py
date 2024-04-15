@@ -63,7 +63,7 @@ class AsymLsqQuantizer(torch.autograd.Function):
 
         if not alpha.initialized:# alpha.item() == 1.0 and (not alpha.initialized):
             alpha.initialize_wrapper(input, num_bits, symmetric=False, init_method='default')
-        
+        # print(alpha)
         assert alpha > 0#, 'alpha = {:.6f} becomes non-positive'.format(alpha)
 
         grad_scale = 1.0 / math.sqrt(input.numel() * Qp)
@@ -77,7 +77,7 @@ class AsymLsqQuantizer(torch.autograd.Function):
         # print(alpha)
         w_q = q_w * alpha
         w_q = w_q + min_val
-        return w_q,alpha
+        return w_q
 
     @staticmethod
     def backward(ctx, grad_output):
@@ -118,11 +118,10 @@ class LsqQuantizer(Quantizer):
 
     def forward(self, x):
         quant_fn = AsymLsqQuantizer.apply
-        x_q,alpha = quant_fn(
+        # print(quant_fn)
+        return quant_fn(
             x, self.clip_val, self.bit, not self.per_channel, self.p2_round_scale
         )
-        self.alpha=alpha
-        return x_q
 
     def extra_repr(self):
         return (

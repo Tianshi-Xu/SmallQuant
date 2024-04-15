@@ -77,7 +77,7 @@ class AsymLsqQuantizer(torch.autograd.Function):
         # print(alpha)
         w_q = q_w * alpha
         w_q = w_q + min_val
-        return w_q
+        return w_q,alpha
 
     @staticmethod
     def backward(ctx, grad_output):
@@ -118,10 +118,11 @@ class LsqQuantizer(Quantizer):
 
     def forward(self, x):
         quant_fn = AsymLsqQuantizer.apply
-        # print(quant_fn)
-        return quant_fn(
+        x_q,alpha = quant_fn(
             x, self.clip_val, self.bit, not self.per_channel, self.p2_round_scale
         )
+        self.alpha=alpha
+        return x_q
 
     def extra_repr(self):
         return (

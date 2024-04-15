@@ -419,6 +419,20 @@ def parse_args():
 
 
 def get_qat_model(model, args):
+    
+    def _decode_args(m):
+        if ";" not in m:
+            return m, {}, {}
+        args = m.split(";")
+        name = args[0]
+        ret = {"wq": {}, "aq": {}}
+        for arg in args[1:]:
+            # print(arg)
+            val = arg.split(":")
+            assert val[1] not in ret[val[0]]
+            ret[val[0]][val[1]] = eval(val[2])
+        return name, ret["wq"], ret["aq"]
+    
     qat_model = copy.deepcopy(model)
     qat_model.train()
 
@@ -427,6 +441,7 @@ def get_qat_model(model, args):
     if not args.quant_stagewise:
         print('uniform quantization')
         for m in args.qmodules:
+            mod, wq, aq = _decode_args(m)
             wcfg = {
                 "enable": args.wq_enable,
                 "mode": args.wq_mode if args.wq_enable else "Identity",
@@ -439,6 +454,7 @@ def get_qat_model(model, args):
                 "normalize_first": False,
                 "p2_round_scale": True,  # scaling factor is power-of-2?
             }
+            wcfg.update(wq)
             acfg = {
                 "enable": args.aq_enable,
                 "mode": args.aq_mode if args.aq_enable else "Identity",
@@ -451,7 +467,8 @@ def get_qat_model(model, args):
                 "normalize_first": False,
                 "p2_round_scale": True,  # scaling factor is power-of-2?
             }
-            qconfigs[m] = {"weight": wcfg, "act": acfg}
+            acfg.update(aq)
+            qconfigs[mod] = {"weight": wcfg, "act": acfg}
     
 
     # fix the first layer "conv1" and the last layer "linear" to 8-bit
@@ -718,6 +735,30 @@ def main(args):
     if 'cifar' in args.dataset:
         model = resnet_3stages.__dict__[args.model](num_classes=args.num_classes)
 
+    if 'torch/image_folder' in args.dataset:
+        model = create_model(
+        args.model,
+        pretrained=args.pretrained,
+        num_classes=args.num_classes,
+        drop_rate=args.drop,
+        drop_connect_rate=args.drop_connect,  # DEPRECATED, use drop_path
+        drop_path_rate=args.drop_path,
+        drop_block_rate=args.drop_block,
+        global_pool=args.gp,
+        bn_tf=args.bn_tf,
+        bn_momentum=args.bn_momentum,
+        bn_eps=args.bn_eps,
+        scriptable=args.torchscript,
+        # checkpoint_path=args.initial_checkpoint,
+        use_distill_head=args.use_distill_head,
+        use_layer_scale=args.use_layer_scale,
+        use_skip=args.use_skip,
+        use_relu=args.use_relu,
+        use_bn=args.use_bn,
+        use_dual_skip=args.use_dual_skip,
+        down_block_type=args.down_block_type,
+        post_res_bn=args.post_res_bn,
+        use_softmax=True)
     print('Model modules:')
     for name, param in model.named_modules():
         print(name)
@@ -854,12 +895,13 @@ def main(args):
 
     
     # create the train and eval datasets
-    #dataset_train = create_dataset(
-    #    args.dataset,
-    #    root=args.data_dir, split=args.train_split, is_training=True,
-    #    batch_size=args.batch_size, repeats=args.epoch_repeats)
-    #dataset_eval = create_dataset(
-    #    args.dataset, root=args.data_dir, split=args.val_split, is_training=False, batch_size=args.batch_size)
+    if "torch/image_folder" or "cifar100" in args.dataset:
+        dataset_train = create_dataset(
+        args.dataset,
+        root=args.data_dir, split=args.train_split, is_training=True,
+        batch_size=args.batch_size, repeats=args.epoch_repeats)
+        dataset_eval = create_dataset(
+        args.dataset, root=args.data_dir, split=args.val_split, is_training=False, batch_size=args.batch_size)
     
 
     # setup mixup / cutmix
@@ -886,7 +928,8 @@ def main(args):
     if args.no_aug or not train_interpolation:
         train_interpolation = data_config['interpolation']
     
-    if 'imagenet' in args.dataset:
+    if 'imagenet' in args.dataset or 'torch/image_folder' or "cifar100" in args.dataset:
+    # if True:
         loader_train = create_loader(
             dataset_train,
             input_size=data_config['input_size'],
@@ -932,7 +975,7 @@ def main(args):
         )
     
     # zwx: add this data processing
-    if 'cifar100' in args.dataset:
+    if 'cifar1000' in args.dataset:
         dataset_train = datasets.CIFAR100(
             root=args.data_dir,
             train=True,
@@ -1103,6 +1146,9 @@ def train_one_epoch(
             else:
                 output = output[0] if isinstance(output, tuple) else output
                 teacher = teacher[0] if isinstance(output, tuple) else output
+                # print("target.shape: ", target.shape)
+                # print("output.shape: ", output.shape)
+                # print(loss_fn)
                 loss = loss_fn(output, target)
 
         if not args.distributed:
@@ -1208,7 +1254,9 @@ def validate(model, loader, loss_fn, args, amp_autocast=suppress, log_suffix='')
             if reduce_factor > 1:
                 output = output.unfold(0, reduce_factor, reduce_factor).mean(dim=2)
                 target = target[0:target.size(0):reduce_factor]
-
+            # print(output.shape)
+            # print(target.shape)
+            # print(loss_fn)
             loss = loss_fn(output, target)
             acc1, acc5 = accuracy(output, target, topk=(1, 5))
 

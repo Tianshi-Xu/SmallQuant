@@ -2,7 +2,7 @@ import pdb
 import torch.nn as nn
 # from torchsummary import summary
 from timm.models.registry import register_model
-
+from src.mobilenetv2_tiny import mobilenet_tiny
 __all__ = ["mobilev2"]
 
 def conv_dw(ch_in, stride=1):
@@ -170,3 +170,7 @@ class MobileNetV2(nn.Module):
 def mobilev2(pretrained=False, progress=False, **kwargs):
     return MobileNetV2(ch_in=3, n_classes=1000, **kwargs)
     
+@register_model
+def tinyimagenet_mobilenetv2(pretrained=False, **kwargs):
+    model=mobilenet_tiny(200,64,1)
+    return model

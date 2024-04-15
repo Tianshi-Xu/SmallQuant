@@ -769,8 +769,7 @@ def main(args):
 
     # move model to GPU, enable channels last layout if set
     model.cuda()
-    # hook(model, check_range)
-    hook(model, check_w_l1norm)
+    
     if args.channels_last:
         model = model.to(memory_format=torch.channels_last)
 
@@ -1004,102 +1003,6 @@ def main(args):
         _logger.info('*** Best metric: {0} (epoch {1})'.format(best_metric, best_epoch))
 
 
-# def cal(n,padded_x_q,x_q,w_q):
-#     max_max_num,max_min_num,max_mean_num=0,0,0
-#     max_bit,min_bit,mean_bit=0,0,0
-#     for k in range(w_q.shape[0]):
-#         # print("-------------k:",k)
-#         for w in range(x_q.shape[2]):
-#             for h in range(x_q.shape[3]):
-#                 part_sum=torch.mul(padded_x_q[n,:,w:w+3,h:h+3],w_q[k,:,:,:])
-#                 tmp_max_mean_num,current=0,0
-#                 for i in part_sum.flatten():
-#                     current=current+i
-#                     tmp_max_mean_num=max(tmp_max_mean_num,abs(current))
-#                 tmp_mean_bit=torch.log2(tmp_max_mean_num).ceil()
-#                 mean_bit=max(mean_bit,tmp_mean_bit)
-#                 max_mean_num=max(max_mean_num,tmp_max_mean_num)
-#                 negative_part_sum=part_sum[part_sum<0]
-#                 positive_part_sum=part_sum[part_sum>0]
-#                 tmp_max_max_num=torch.sum(torch.abs(negative_part_sum))
-#                 tmp_max_max_num=max(tmp_max_max_num,torch.sum(positive_part_sum))
-#                 tmp_max_bit=torch.log2(tmp_max_max_num).ceil()
-#                 max_bit=max(max_bit,tmp_max_bit)
-#                 max_max_num=max(max_max_num,tmp_max_max_num)
-#                 tmp_max_min_num=torch.max(torch.abs(part_sum))
-#                 tmp_max_min_num=max(tmp_max_min_num,part_sum.sum())
-#                 tmp_min_bit=torch.log2(tmp_max_min_num).ceil()
-#                 min_bit=max(min_bit,tmp_min_bit)
-#                 max_min_num=max(max_min_num,tmp_max_min_num)
-#     print("done one")
-#     sys.stdout.flush()
-#     return [max_max_num,max_min_num,max_mean_num,max_bit+1,min_bit+1,mean_bit+1]
-
-# class MyThread(Thread):
-#     def __init__(self, func, args):
-#         '''
-#         :param func: 可调用的对象
-#         :param args: 可调用对象的参数
-#         '''
-#         Thread.__init__(self)
-#         self.func = func
-#         self.args = args
-#         self.result = None
-#     def run(self):
-#         self.result = self.func(*self.args)
-
-#     def getResult(self):
-#         return self.result
-
-
-# def check_range(model,inp,out):
-#     if model.stride[0]==2 or model.quan_w_fn.bit==8:
-#         return
-#     # print("begin")
-#     # print(model)
-#     x_q= model.quan_a_fn(inp[0])
-#     x_q_alpha= model.quan_a_fn.alpha
-#     w_q=model.quan_w_fn(model.weight)
-#     w_q_alpha=model.quan_w_fn.alpha
-#     x_q=x_q/x_q_alpha
-#     w_q=w_q*w_q_alpha
-#     # print(inp[0].shape)
-#     # print(model.weight.shape)
-#     # print("x_q_alpha: ",x_q_alpha)
-#     # print("w_q_alpha: ",w_q_alpha)
-#     # N,C,W,H
-#     # K,C,R,R
-#     # print("x_q_shape",x_q.shape)
-#     # print("w_q_shape",w_q.shape)
-#     # print("x_q: ",torch.unique(x_q))
-#     # print("w_q: ",torch.unique(w_q[0]))
-#     padded_x_q=F.pad(x_q,(1,1,1,1))
-#     # print("x_q_shape",x_q.shape)
-#     max_max_num,max_min_num,max_mean_num=0,0,0
-#     max_bit,min_bit,mean_bit=0,0,0
-#     ans=[max_max_num,max_min_num,max_mean_num,max_bit,min_bit,mean_bit]
-#     print("In layer: ",model)
-#     sys.stdout.flush()
-#     thread_pool=[]
-#     for n in range(x_q.shape[0]):
-#         t=MyThread(cal,(n,padded_x_q,x_q,w_q))
-#         thread_pool.append(t)
-#         t.start()
-#         t.join()
-#         res=t.getResult()
-#         ans=[max(ans[i],res[i]) for i in range(len(ans))]
-#         # print("n: ",n)
-        
-#     print("max num: ",ans[0])
-#     print("min num: ",ans[1])
-#     print("mean num: ",ans[2])
-#     print("max_bit: ",ans[3])
-#     print("min_bit: ",ans[4])
-#     print("mean_bit: ",ans[5])
-#     # print("input: ",inp[0].min(),inp[0].max())
-#     # print("output: ",out[0].min(),out[0].max())
-#     # print(out.flatten()[0:20])
-
 def worker(idx, batch_size, x_q, w_q, padded_x_q, results):
     part_sum = torch.zeros_like(padded_x_q[0, :, :, :])
     max_max_num, max_min_num, max_mean_num = 0, 0, 0
@@ -1198,9 +1101,10 @@ def check_w_l1norm(model, inp, out):
     w_q = model.quan_w_fn(model.weight)
     w_q_alpha = model.quan_w_fn.alpha
     w_q = w_q * w_q_alpha
-    y_q = F.conv2d(x_q, w_q, stride=model.stride, padding=model.padding, dilation=model.dilation, groups=model.groups)
+    y_q = F.conv2d(x_q, torch.abs(w_q), stride=model.stride, padding=model.padding, dilation=model.dilation, groups=model.groups)
     print("max l1 norm: ",torch.max(torch.abs(y_q)))
     print("max l1 norm bit:",torch.log2(torch.max(torch.abs(y_q))).ceil())
+    print("max ext l1 norm bit:",torch.log2(torch.max(torch.abs(y_q))).ceil()-model.quan_w_fn.bit)
     sys.stdout.flush()
 
 
@@ -1210,6 +1114,8 @@ def hook(model,fn):
             module.register_forward_hook(fn)
 
 def validate(model, loader, loss_fn, args, amp_autocast=suppress, log_suffix=''):
+    # hook(model, check_range)
+    hook(model, check_w_l1norm)
     batch_time_m = AverageMeter()
     losses_m = AverageMeter()
     top1_m = AverageMeter()

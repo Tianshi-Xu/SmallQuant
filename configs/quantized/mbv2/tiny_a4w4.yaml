@@ -9,7 +9,7 @@ aq_mode: LSQ
 aq_neg: null
 aq_pos: null
 aug_splits: 0
-batch_size: 128
+batch_size: 256
 bn_eps: null
 bn_modules: null
 bn_momentum: null
@@ -24,8 +24,8 @@ cooldown_epochs: 10
 crop_pct: 1.0
 cutmix: 0.0
 cutmix_minmax: null
-data_dir: /home/xts/code/dataset/cifar100/
-dataset: cifar100
+data_dir: /home/xts/code/dataset/
+dataset: torch/image_folder
 decay_epochs: 30
 decay_milestones:
 - 40
@@ -38,7 +38,7 @@ drop_block: null
 drop_connect: null
 drop_path: null
 epoch_repeats: 0.0
-epochs: 100
+epochs: 300
 eval_metric: top1
 experiment: ''
 fl_aq_bitw: 8
@@ -55,8 +55,8 @@ fl_wq_per_channel: false
 fl_wq_pos: null
 gp: null
 hflip: 0.5
-img_size: 32
-initial_checkpoint: /home/xts/code/SmallQuant/configs/quantized/resnet32_w4a4/w4a4.pth.tar
+img_size: 64
+initial_checkpoint: /home/xts/code/SmallQuant/configs/quantized/mbv2/fp32.pth.tar
 input_size: null
 interpolation: bicubic
 jsd: false
@@ -76,12 +76,11 @@ mean:
 - 0.456
 - 0.406
 min_lr: 1.0e-05
-mixup: 0.0
+mixup: 0.8
 mixup_mode: batch
 mixup_off_epoch: 0
 mixup_prob: 1.0
-mixup_switch_prob: 0.0
-model: resnet32
+mixup_switch_prob: 0.5
 model_ema: false
 model_ema_decay: 0.9998
 model_ema_force_cpu: false
@@ -91,7 +90,7 @@ no_aug: false
 no_bn: false
 no_prefetcher: false
 no_resume_opt: false
-num_classes: 100
+num_classes: 200
 opt: sgd
 opt_betas: null
 opt_eps: null
@@ -102,37 +101,57 @@ pin_mem: false
 post_res_bn: false
 pretrained: false
 qmodules:
-- layer1.0.conv1
-- layer1.0.conv2
-- layer1.1.conv1
-- layer1.1.conv2
-- layer1.2.conv1
-- layer1.2.conv2
-- layer1.3.conv1
-- layer1.3.conv2
-- layer1.4.conv1
-- layer1.4.conv2
-- layer2.0.conv1
-- layer2.0.conv2
-- layer2.1.conv1
-- layer2.1.conv2
-- layer2.2.conv1
-- layer2.2.conv2
-- layer2.3.conv1
-- layer2.3.conv2
-- layer2.4.conv1
-- layer2.4.conv2
-- layer3.0.conv1
-- layer3.0.conv2
-- layer3.1.conv1
-- layer3.1.conv2
-- layer3.2.conv1
-- layer3.2.conv2
-- layer3.3.conv1
-- layer3.3.conv2
-- layer3.4.conv1
-- layer3.4.conv2
-quant_firstlast: true
+  - features.1.conv.0;wq:bit:8
+  - features.1.conv.3
+  - features.2.conv.0
+  - features.2.conv.3;wq:bit:8
+  - features.2.conv.6
+  - features.3.conv.0
+  - features.3.conv.3;wq:bit:8
+  - features.3.conv.6
+  - features.4.conv.0
+  - features.4.conv.3;wq:bit:8
+  - features.4.conv.6
+  - features.5.conv.0
+  - features.5.conv.3;wq:bit:8
+  - features.5.conv.6
+  - features.6.conv.0
+  - features.6.conv.3;wq:bit:8
+  - features.6.conv.6
+  - features.7.conv.0
+  - features.7.conv.3;wq:bit:8
+  - features.7.conv.6
+  - features.8.conv.0
+  - features.8.conv.3;wq:bit:8
+  - features.8.conv.6
+  - features.9.conv.0
+  - features.9.conv.3;wq:bit:8
+  - features.9.conv.6
+  - features.10.conv.0
+  - features.10.conv.3;wq:bit:8
+  - features.10.conv.6
+  - features.11.conv.0
+  - features.11.conv.3;wq:bit:8
+  - features.11.conv.6
+  - features.12.conv.0
+  - features.12.conv.3;wq:bit:8
+  - features.12.conv.6
+  - features.13.conv.0
+  - features.13.conv.3;wq:bit:8
+  - features.13.conv.6
+  - features.14.conv.0
+  - features.14.conv.3;wq:bit:8
+  - features.14.conv.6
+  - features.15.conv.0
+  - features.15.conv.3;wq:bit:8
+  - features.15.conv.6
+  - features.16.conv.0
+  - features.16.conv.3;wq:bit:8
+  - features.16.conv.6
+  - features.17.conv.0
+  - features.17.conv.3;wq:bit:8
+  - features.17.conv.6
+quant_firstlast: false
 quant_stagewise: false
 quant_teacher: false
 ratio:
@@ -149,23 +168,39 @@ resq_bitw: 8
 resq_enable: true
 resq_mode: LSQ
 resq_modules:
-- relu
-- layer1.0.relu2
-- layer1.1.relu2
-- layer1.2.relu2
-- layer1.3.relu2
-- layer1.4.relu2
-- layer2.0.relu2
-- layer2.1.relu2
-- layer2.2.relu2
-- layer2.3.relu2
-- layer2.4.relu2
-- layer2.1.relu2
-- layer3.0.relu2
-- layer3.1.relu2
-- layer3.2.relu2
-- layer3.3.relu2
-- layer3.4.relu2
+  - "features.1.conv.2"
+  - "features.2.conv.2"
+  - "features.2.conv.5"
+  - "features.3.conv.2"
+  - "features.3.conv.5"
+  - "features.4.conv.2"
+  - features.4.conv.5
+  - features.5.conv.2
+  - features.5.conv.5
+  - features.6.conv.2
+  - features.6.conv.5
+  - features.7.conv.2
+  - features.7.conv.5
+  - features.8.conv.2
+  - features.8.conv.5
+  - features.9.conv.2
+  - features.9.conv.5
+  - features.10.conv.2
+  - features.10.conv.5
+  - features.11.conv.2
+  - features.11.conv.5
+  - features.12.conv.2
+  - features.12.conv.5
+  - features.13.conv.2
+  - features.13.conv.5
+  - features.14.conv.2
+  - features.14.conv.5
+  - features.15.conv.2
+  - features.15.conv.5
+  - features.16.conv.2
+  - features.16.conv.5
+  - features.17.conv.2
+  - features.17.conv.5
 resq_neg: null
 resq_pos: null
 resume: ''

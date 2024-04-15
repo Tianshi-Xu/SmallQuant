@@ -51,7 +51,7 @@ class SymQuantizer(torch.autograd.Function):
         else:
             output = input
 
-        return output
+        return output,s
 
     @staticmethod
     def backward(ctx, grad_output):
@@ -98,9 +98,10 @@ class PACTQuantizer(Quantizer):
 
     def forward(self, x):
         quant_fn = SymQuantizer.apply
-        x_q= quant_fn(
+        x_q,alpha= quant_fn(
             x, self.clip_val, self.bit, not self.per_channel, self.p2_round_scale
         )
+        self.alpha=alpha
         return x_q
 
     def extra_repr(self):

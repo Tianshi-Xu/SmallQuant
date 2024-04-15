@@ -1,0 +1,389 @@
+It is the 3-stage ResNet32
+Model modules:
+
+conv1
+bn1
+relu
+layer1
+layer1.0
+layer1.0.conv1
+layer1.0.bn1
+layer1.0.conv2
+layer1.0.bn2
+layer1.0.relu1
+layer1.0.relu2
+layer1.0.shortcut
+layer1.1
+layer1.1.conv1
+layer1.1.bn1
+layer1.1.conv2
+layer1.1.bn2
+layer1.1.relu1
+layer1.1.relu2
+layer1.1.shortcut
+layer1.2
+layer1.2.conv1
+layer1.2.bn1
+layer1.2.conv2
+layer1.2.bn2
+layer1.2.relu1
+layer1.2.relu2
+layer1.2.shortcut
+layer1.3
+layer1.3.conv1
+layer1.3.bn1
+layer1.3.conv2
+layer1.3.bn2
+layer1.3.relu1
+layer1.3.relu2
+layer1.3.shortcut
+layer1.4
+layer1.4.conv1
+layer1.4.bn1
+layer1.4.conv2
+layer1.4.bn2
+layer1.4.relu1
+layer1.4.relu2
+layer1.4.shortcut
+layer2
+layer2.0
+layer2.0.conv1
+layer2.0.bn1
+layer2.0.conv2
+layer2.0.bn2
+layer2.0.relu1
+layer2.0.relu2
+layer2.0.shortcut
+layer2.1
+layer2.1.conv1
+layer2.1.bn1
+layer2.1.conv2
+layer2.1.bn2
+layer2.1.relu1
+layer2.1.relu2
+layer2.1.shortcut
+layer2.2
+layer2.2.conv1
+layer2.2.bn1
+layer2.2.conv2
+layer2.2.bn2
+layer2.2.relu1
+layer2.2.relu2
+layer2.2.shortcut
+layer2.3
+layer2.3.conv1
+layer2.3.bn1
+layer2.3.conv2
+layer2.3.bn2
+layer2.3.relu1
+layer2.3.relu2
+layer2.3.shortcut
+layer2.4
+layer2.4.conv1
+layer2.4.bn1
+layer2.4.conv2
+layer2.4.bn2
+layer2.4.relu1
+layer2.4.relu2
+layer2.4.shortcut
+layer3
+layer3.0
+layer3.0.conv1
+layer3.0.bn1
+layer3.0.conv2
+layer3.0.bn2
+layer3.0.relu1
+layer3.0.relu2
+layer3.0.shortcut
+layer3.1
+layer3.1.conv1
+layer3.1.bn1
+layer3.1.conv2
+layer3.1.bn2
+layer3.1.relu1
+layer3.1.relu2
+layer3.1.shortcut
+layer3.2
+layer3.2.conv1
+layer3.2.bn1
+layer3.2.conv2
+layer3.2.bn2
+layer3.2.relu1
+layer3.2.relu2
+layer3.2.shortcut
+layer3.3
+layer3.3.conv1
+layer3.3.bn1
+layer3.3.conv2
+layer3.3.bn2
+layer3.3.relu1
+layer3.3.relu2
+layer3.3.shortcut
+layer3.4
+layer3.4.conv1
+layer3.4.bn1
+layer3.4.conv2
+layer3.4.bn2
+layer3.4.relu1
+layer3.4.relu2
+layer3.4.shortcut
+linear
+Get QAT model...
+uniform quantization
+first and last layers quantization
+Files already downloaded and verified
+Files already downloaded and verified
+batch_idx:  0
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(517., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(500., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(9., device='cuda:0')
+max ext l1 norm bit: tensor(5., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(540., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(511., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(9., device='cuda:0')
+max ext l1 norm bit: tensor(5., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(507., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(9., device='cuda:0')
+max ext l1 norm bit: tensor(5., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(496., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(9., device='cuda:0')
+max ext l1 norm bit: tensor(5., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(515., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(530., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(493., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(9., device='cuda:0')
+max ext l1 norm bit: tensor(5., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(542., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1009., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(999., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(993., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(980., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1022., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(977., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1031., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1012., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(10., device='cuda:0')
+max ext l1 norm bit: tensor(6., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1069., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1999., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1982., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1939., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1968., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1984., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(1976., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(2027., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(11., device='cuda:0')
+max ext l1 norm bit: tensor(7., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(2060., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(12., device='cuda:0')
+max ext l1 norm bit: tensor(8., device='cuda:0')
+spawned
+In layer:  QConv2d(
+  64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+  (quan_w_fn): PACTQuantizer(bit=4, pose=7, neg=-7, norm=({self.normalize_first}, 1e-05, 1.0), all_positive=False, symmetric=True, per_channel=True)
+  (quan_a_fn): LsqQuantizer(bit=4, pos=7, neg=-7, norm=(False, 1e-05, 1.0), all_positive=False, symmetric=False, per_channel=False)
+)
+max l1 norm:  tensor(2156., device='cuda:0', dtype=torch.float16)
+max l1 norm bit: tensor(12., device='cuda:0')
+max ext l1 norm bit: tensor(8., device='cuda:0')
+Total ok

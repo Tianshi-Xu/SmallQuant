@@ -56,7 +56,7 @@ fl_wq_pos: null
 gp: null
 hflip: 0.5
 img_size: 32
-initial_checkpoint: /home/xts/code/privquant-test/configs/quantized/resnet32_w4a4/a3w3.pth.tar
+initial_checkpoint: /home/xts/code/SmallQuant/configs/quantized/resnet32_w4a4/w3a3.pth.tar
 input_size: null
 interpolation: bicubic
 jsd: false
